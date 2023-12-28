@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Frontpage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+<header>
+    <div>
+        <nav id="navbar">
+            <a href="/">Frontpage</a>
+            <a th:if="${#ctx.session.isLoggedIn}" th:text="Test" href="/test">Test</a>
+            <a th:if="not ${#ctx.session.isLoggedIn}" th:text="'Login'" href="/login"></a>
+            <a th:if="${#ctx.session.isLoggedIn}" th:text="'Logout'"  href="/?logout=true"></a>
+            <a th:if="${#ctx.session.isLoggedIn}" th:text="'Hello ' + ${#ctx.session.username}"></a>
+        </nav>
+    </div>
+</header>
+
+<h1 th:text="${welcome}"></h1>
+
+<p>This is your first web application in this world</p>
+
+
+
+<footer>
+    Dette er så en footer.
+    <p th:text="${#ctx.session.email}"></p>
+    <p th:text="${#ctx.name}"></p>
+</footer>
+</body>
+</html>

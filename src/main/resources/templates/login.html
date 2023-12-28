@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Frontpage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+<header>
+    <div>
+        <nav id="navbar">
+            <a href="/">Frontpage</a>
+        </nav>
+    </div>
+</header>
+
+<h1>Login: </h1>
+
+<form th:action="@{/}" method="post">
+    <label>
+        <input type="text" name="username" placeholder="username">
+    </label>
+    <label>
+        <input type="password" name="password" placeholder="password">
+    </label>
+    <button type="submit" value="Submit">Login</button>
+</form>
+
+
+<footer>
+    Dette er så en footer.
+    <p th:text="${#ctx.session.email}"></p>
+    <p th:text="${#ctx.name}"></p>
+</footer>
+</body>
+</html>
