@@ -17,7 +17,7 @@
     </div>
 </header>
 
-<h1>Login: </h1>
+<h1>Register: </h1>
 
 <form th:action="@{/}" method="post">
     <label>
@@ -26,12 +26,9 @@
     <label>
         <input type="password" name="password" placeholder="password">
     </label>
-    <input type="hidden" name="login" value="register">
-    <button type="submit" value="Submit">Login</button>
+    <input type="hidden" name="register" value="register">
+    <button type="submit" value="Submit">Register</button>
 </form>
-
-<!--not registered-->
-<a th:href="@{/register}" >Not Registered! Click Here</a>
 
 
 <footer>

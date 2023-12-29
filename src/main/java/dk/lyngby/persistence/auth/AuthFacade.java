@@ -7,23 +7,25 @@ import dk.lyngby.persistence.ConnectionPool;
 
 public class AuthFacade {
 
+    private static final AuthMapper authMapper = new AuthMapper();
+
     public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException, ApiException {
-        return AuthMapper.verifyUser(username, password, connectionPool);
+        return authMapper.verifyUser(username, password, connectionPool);
     }
 
     public static User getUser(String usernameFromToken, ConnectionPool connectionPool) throws DatabaseException {
-        return AuthMapper.getUser(usernameFromToken, connectionPool);
+        return authMapper.getUser(usernameFromToken, connectionPool);
     }
 
     public static void checkUser(String username, ConnectionPool connectionPool) throws DatabaseException, ApiException {
-        AuthMapper.checkUser(username, connectionPool);
+        authMapper.checkUser(username, connectionPool);
     }
 
     public static void checkRole(String role) throws ApiException {
-        AuthMapper.checkRole(role);
+        authMapper.checkRole(role);
     }
 
     public static void registerUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException {
-        AuthMapper.registerUser(username, password, role, connectionPool);
+        authMapper.registerUser(username, password, role, connectionPool);
     }
 }

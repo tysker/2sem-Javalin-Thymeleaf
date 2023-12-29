@@ -8,7 +8,10 @@ import java.util.Map;
 
 public class LoginPage {
     public static void loginPage(Context ctx){
-        Map<String, Object> model = new HashMap<>();
-        ctx.render("login.html", model);
+        ctx.render("login.html");
+    }
+
+    public static void registerPage(Context ctx) {
+        ctx.render("register.html");
     }
 }

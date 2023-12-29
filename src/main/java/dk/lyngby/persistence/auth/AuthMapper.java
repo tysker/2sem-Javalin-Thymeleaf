@@ -5,6 +5,7 @@ import dk.lyngby.entities.User;
 import dk.lyngby.exceptions.ApiException;
 import dk.lyngby.exceptions.DatabaseException;
 import dk.lyngby.persistence.ConnectionPool;
+import lombok.NoArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -12,17 +13,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@NoArgsConstructor
 public class AuthMapper {
 
-    private static String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
 
-    private static boolean verifyPassword(String dbPassword, String userPassword) {
-        return BCrypt.checkpw(dbPassword, userPassword);
-    }
-
-    public static void checkUser(String username, ConnectionPool connectionPool) throws DatabaseException, ApiException {
+    public void checkUser(String username, ConnectionPool connectionPool) throws DatabaseException, ApiException {
         String sql = "select * from \"user\" where username = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -38,7 +33,7 @@ public class AuthMapper {
         }
     }
 
-    public static void checkRole(String userRole) throws ApiException {
+    public void checkRole(String userRole) throws ApiException {
         Role.RoleName[] roleList = Role.RoleName.values();
 
         boolean roleExists = false;
@@ -52,7 +47,7 @@ public class AuthMapper {
 
     }
 
-    public static void registerUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException {
+    public void registerUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "insert into \"user\" (username, password, role) values (?, ?, ?)";
 
@@ -68,7 +63,7 @@ public class AuthMapper {
         }
     }
 
-    public static User getUser(String usernameFromToken, ConnectionPool connectionPool) throws DatabaseException {
+    public User getUser(String usernameFromToken, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "select * from \"user\" where username = ?";
         User user = new User();
         try (Connection connection = connectionPool.getConnection()) {
@@ -90,7 +85,7 @@ public class AuthMapper {
         return user;
     }
 
-    public static User verifyUser(String username, String password, ConnectionPool connectionPool) throws ApiException, DatabaseException {
+    public User verifyUser(String username, String password, ConnectionPool connectionPool) throws ApiException, DatabaseException {
 
         String sql = "select * from \"user\" where username = ?";
         User user = new User();
@@ -119,5 +114,13 @@ public class AuthMapper {
             throw new DatabaseException(e, "Could not verify user");
         }
         return user;
+    }
+
+    private static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    private static boolean verifyPassword(String dbPassword, String userPassword) {
+        return BCrypt.checkpw(dbPassword, userPassword);
     }
 }
