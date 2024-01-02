@@ -9,16 +9,20 @@
 </head>
 
 <body>
-<header>
-    <div>
-        <nav id="navbar">
-            <a href="/">Frontpage</a>
-            <a th:if="${#ctx.session.isLoggedIn}" th:text="'Logout'"  href="/?logout=true"></a>
-            <a th:if="not ${#ctx.session.isLoggedIn}" th:text="'Login'" href="/login"></a>
-            <a th:if="${#ctx.session.isLoggedIn}" th:text="'Hello ' + ${#ctx.session.username}"></a>
+<div class="container">
+    <header class="main-header">
+        <h1>📘 The Javalin Thymeleaf Cookbook</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#">About</a>
+            <a href="#">Pricing</a>
+            <a href="#">Terms of use</a>
+            <a href="#">Contact</a>
+            <a th:text="${#ctx.session.isLoggedIn} ? 'Sign Out' : 'Sign In'" href="#"
+               th:href="${#ctx.session.isLoggedIn} ? '/?logout=true' : '/login'">Sign In</a>
         </nav>
-    </div>
-</header>
+    </header>
+</div>
 
 
 

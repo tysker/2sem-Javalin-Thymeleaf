@@ -1,51 +1,60 @@
 /* Stylesheet for the application */
 
 * {
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     padding: 0;
     margin: 0;
 }
 
 body {
-    height: 125vh;
-    background-color: #f5f6fa;
-    background-size: cover;
+    color: #444;
     font-family: sans-serif;
-    margin-top: 80px;
+
+    border-top: 10px solid #1098ad;
+    position: relative;
 }
 
-header {
-    background-color: #fbc531;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+.head-container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.main-header {
+    background-color: #f7f7f7;
+    padding: 20px 40px;
+    margin-bottom: 60px;
     height: 80px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 25px 0 black;
 }
 
-header img {
-    height: 50px;
-    margin-left: 10px;
+nav {
+    font-size: 18px;
 }
 
-header * {
-    display: inline;
-}
-
-header li {
-    margin: 20px;
-}
-
-header li a {
-    color: black;
+a:link {
+    color: #1098ad;
     text-decoration: none;
+    margin-right: 30px;
+    margin-top: 10px;
+    display: inline-block;
 }
 
-main {
-    color: #1e1f22;
+a:visited {
+    color: #1098ad;
+}
+
+a:hover {
+    color: orangered;
+    font-weight: bold;
+    text-decoration: underline orangered;
+}
+
+a:active {
+    background-color: black;
+    font-style: italic;
+}
+
+nav a:link:last-child {
+    margin-right: 0;
 }
 
 footer {
@@ -57,5 +66,10 @@ footer {
     color: white;
     text-align: center;
     padding-top: 15px;
+}
+
+main {
+    width: 1000px;
+    margin: 0 auto;
 }
 

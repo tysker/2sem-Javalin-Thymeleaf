@@ -9,24 +9,22 @@
 </head>
 
 <body>
-<header>
-    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.missionmission.org%2Fwp-content%2Fuploads%2F2014%2F02%2Fcupcake.jpg&f=1&nofb=1&ipt=2e4986534acbf39a072ea0aff22cd80b2b022f8c343c6a33c402c1f005188d30&ipo=images"
-         alt="">
-    <nav>
-        <ul class="container">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Terms of use</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a th:if="not ${#ctx.session.isLoggedIn} " th:text="'Sign In'" href="/login">Sign In</a></li>
-            <li><a th:if="${#ctx.session.isLoggedIn}" th:text="'Logout'" href="/?logout=true">Sign Out</a></li>
-        </ul>
-    </nav>
-</header>
+<div class="head-container">
+    <header class="main-header">
+        <h1>📘 The Javalin Thymeleaf Cookbook</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#">About</a>
+            <a href="#">Pricing</a>
+            <a href="#">Terms of use</a>
+            <a href="#">Contact</a>
+            <a th:text="${#ctx.session.isLoggedIn} ? 'Sign Out' : 'Sign In'" href="#"
+               th:href="${#ctx.session.isLoggedIn} ? '/?logout=true' : '/login'">Sign In</a>
+        </nav>
+    </header>
+</div>
 
-
-<main>
+<main class="main-container">
     <h1 th:text="${welcome}"></h1>
     <p>This is your first web application in this world</p>
 </main>
