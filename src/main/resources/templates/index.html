@@ -18,8 +18,8 @@
             <a href="#">Pricing</a>
             <a href="#">Terms of use</a>
             <a href="#">Contact</a>
-            <a th:text="${#ctx.session.isLoggedIn} ? 'Sign Out' : 'Sign In'" href="#"
-               th:href="${#ctx.session.isLoggedIn} ? '/?logout=true' : '/login'">Sign In</a>
+            <a th:text="${session.isLoggedIn} ? 'Sign Out' : 'Sign In'" href="#"
+               th:href="${session.isLoggedIn} ? '/?logout=true' : '/login'">Sign In</a>
         </nav>
     </header>
 

@@ -39,7 +39,7 @@ public class Main {
         app.get("/login", LoginPage::loginPage, Role.RoleName.ANYONE);
         app.get("/register", LoginPage::registerPage, Role.RoleName.ANYONE);
         app.get("/test", TestPage::testPage, Role.RoleName.USER);
-        // app.get("/*", ctx -> ctx.render("pageNotFound.html"), Role.RoleName.ANYONE); // does not work with Thymeleaf and css
+        //app.get("/*", ctx -> ctx.render("pageNotFound.html"), Role.RoleName.ANYONE); // does not work with Thymeleaf and css
 
         // Exception handling
         app.exception(ApiException.class, exceptionController::apiExceptionHandler);
@@ -49,6 +49,7 @@ public class Main {
 
         // Middleware after
         app.after(AccessMiddleware::logout);
+        app.after(AccessMiddleware::pageNotFound);
 
     }
 }

@@ -67,14 +67,9 @@ public class AccessMiddleware {
         }
     }
 
-    public static void logout(Context ctx) {
-        String logout = ctx.queryParam("logout");
-        if(logout != null){
-            ctx.removeCookie("token");
-            ctx.sessionAttribute("isLoggedIn", false);
-            ctx.sessionAttribute("username", null);
-            ctx.sessionAttribute("role", null);
-            ctx.render("index.html");
+    public static void pageNotFound(Context ctx) {
+        if(ctx.status().getCode() == 404){
+            ctx.render("pageNotFound.html");
         }
     }
 
@@ -83,6 +78,17 @@ public class AccessMiddleware {
             ctx.sessionAttribute("isLoggedIn", false);
             ctx.sessionAttribute("username", "");
             ctx.sessionAttribute("role", "");
+        }
+    }
+
+    public static void logout(Context ctx) {
+        String logout = ctx.queryParam("logout");
+        if(logout != null){
+            ctx.removeCookie("token");
+            ctx.sessionAttribute("isLoggedIn", false);
+            ctx.sessionAttribute("username", null);
+            ctx.sessionAttribute("role", null);
+            ctx.render("index.html");
         }
     }
 }
